@@ -1,0 +1,24 @@
+{
+  "name": "ordbogen",
+  "version": "1.0.0",
+  "description": "Google books overview",
+  "main": "index.html",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-route": "^1.5.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eveto85/GoogleBooksOverview.git"
+  },
+  "author": "Evelina Pancheva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eveto85/GoogleBooksOverview/issues"
+  },
+  "homepage": "https://github.com/eveto85/GoogleBooksOverview#readme"
+}
