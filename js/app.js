@@ -1,6 +1,7 @@
 var googleBooks = angular.module('googleBooks',[
 	'ngRoute',
-	'booksControllers'
+	'booksControllers',
+	'infinite-scroll'
 ]);
 
 googleBooks.config(['$routeProvider', function($routeProvider){
