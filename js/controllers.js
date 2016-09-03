@@ -36,7 +36,7 @@ booksControllers.controller('SearchController',['$scope','$http','$routeParams',
 	}
 }]);
 
-booksControllers.controller('SingleBookController',['$scope','$http','$routeParams', function($scope,$http,'$routeParams') {
+booksControllers.controller('SingleBookController',['$scope','$http','$routeParams', function($scope,$http,$routeParams) {
 	$scope.bookId = $routeParams.itemId;
 	$http.get('https://www.googleapis.com/books/v1/volumes/'+$scope.bookId)
 	.then(function(data){
