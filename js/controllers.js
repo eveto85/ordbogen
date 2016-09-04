@@ -1,6 +1,6 @@
 var booksControllers = angular.module('booksControllers',[]);
 
-booksControllers.controller('SearchController',['$scope','$http', function($scope,$http) {
+booksControllers.controller('SearchController',['$scope','results', function($scope, results) {
 	var apiKey = "AIzaSyCTwJYPf7-DpuD2C0OfQFKExXhqWPs7Wts";
 	$scope.hideSingleBook = function (){
 		$scope.showSingleBook = false;
@@ -10,23 +10,8 @@ booksControllers.controller('SearchController',['$scope','$http', function($scop
 
 	$scope.getScrollLikeTheWind = function (){
 		if (typeof $scope.booksResults == "undefined" || $scope.startIndex > 500) return;
-	    $scope.getMeSomeBooks($scope.query+'&startIndex='+$scope.startIndex);
+	    results.getMeSomeBooks($scope.query+'&startIndex='+$scope.startIndex, $scope);
 	    $scope.startIndex +=10;
-	}
-
-	$scope.getMeSomeBooks = function (url){
-		$http.get(url)
-		.then(function itWentWell (data){
-			if(data.data.totalItems == 0) {
-				$scope.emptyResponse = true;
-				return;
-			} else {
-				$scope.emptyResponse = false;
-			}
-			$scope.booksResults = $scope.booksResults ? $scope.booksResults.concat(data.data.items) : data.data.items;
-		},function itDidntGoWell (data) {
-			$scope.requestError = data.data.error.message;
-		});
 	}
 	$scope.whatToSearchFor = function (){
 		if($scope.searchInput.length > 3) {
@@ -36,11 +21,11 @@ booksControllers.controller('SearchController',['$scope','$http', function($scop
 				case "inauthor":
 				case "intitle":
 					$scope.query+= "+"+$scope.searchIn+":"+$scope.searchInput+'&maxResults=10&key='+apiKey;
-					$scope.getMeSomeBooks($scope.query);
+					results.getMeSomeBooks($scope.query,$scope);
 					break;
 				case "whatever":
 					$scope.query +='&maxResults=10&key='+apiKey;
-					$scope.getMeSomeBooks($scope.query);
+					results.getMeSomeBooks($scope.query, $scope);
 			}
 		}
 		$scope.startIndex = 10;

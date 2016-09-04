@@ -18,12 +18,11 @@
         <p class="searchForm-error" ng-if="!searchForm.searchField.$valid">Please enter at least 4 characters</p>
         <p class="searchForm-error" ng-if="requestError">We are sorry but your request did not go through, try again later. Status: {{requestError}}</p>
         <p class="searchForm-error" ng-if="emptyResponse">Your search returned no results</p>
-
     </div>
     <div class="singleBook-popup" ng-click="hideSingleBook()" ng-if="showSingleBook">
         <div class="singleBook-popup--inner" ng-include="'views/book.html'" scope="" onload=""></div>
     </div>
-    <div infinite-scroll="getScrollLikeTheWind()" infinite-scroll-distance= 3 class="searchResults" role="main">
+    <div infinite-scroll="getScrollLikeTheWind()" infinite-scroll-immediate-check="false" infinite-scroll-distance='1' infinite-scroll-disabled='emptyResponse' class="searchResults" role="main">
         <div class="searchResult-wrapper" ng-repeat="book in booksResults track by $index">
 			<a ng-click="loadMoreInfo($index)">
                 <div class="searchResult">
