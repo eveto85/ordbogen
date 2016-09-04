@@ -1,4 +1,4 @@
-<section class="searchPage">
+<section class="searchPage" ng-controller="SearchController">
     <div  class="searchBar">
         <form role="form" class="searchForm" name="searchForm" ng-submit="whatToSearchFor()">
             <div class="searchWrapper">
@@ -6,7 +6,7 @@
                 <button class="searchForm-button" type="submit">&#x1f50e;</button>
             </div>
             <label>
-                <input class="searchForm-radio" type="radio" name="searchIn" value="inauthor" ng-model="searchIn"> By author
+                <input class="searchForm-radio" type="radio" name="searchIn" value="inauthor" ng-model="searchIn"> By Author
             </label>
             <label>
                 <input class="searchForm-radio" type="radio" name="searchIn" value="intitle" ng-model="searchIn"> By book title
@@ -16,14 +16,18 @@
             </label>
         </form>
         <p class="searchForm-error" ng-if="!searchForm.searchField.$valid">Please enter at least 4 characters</p>
+        <p class="searchForm-error" ng-if="requestError">We are sorry but your request did not go through, try again later. Status: {{requestError}}</p>
+        <p class="searchForm-error" ng-if="emptyResponse">Your search returned no results</p>
+
     </div>
-    <div infinite-scroll="getMeSomeExtraBooks()" class="searchResults" role="main">
-        <div class="searchResult-wrapper" ng-repeat="book in booksResults">
-			<a href="#/book-details/{{book.id}}">
+    <div class="singleBook-popup" ng-click="hideSingleBook()" ng-if="showSingleBook">
+        <div class="singleBook-popup--inner" ng-include="'views/book.html'" scope="" onload=""></div>
+    </div>
+    <div infinite-scroll="getScrollLikeTheWind()" infinite-scroll-distance= 3 class="searchResults" role="main">
+        <div class="searchResult-wrapper" ng-repeat="book in booksResults track by $index">
+			<a ng-click="loadMoreInfo($index)">
                 <div class="searchResult">
-                   <img ng-show={{book.volumeInfo.imageLinks.thumbnail!==NULL}} ng-src={{book.volumeInfo.imageLinks.thumbnail}} alt="Front cover of">
-                    <img 
-                    ng-show={{book.volumeInfo.imageLinks.thumbnail==NULL}} ng-src="src/no-image.png">
+                   <img ng-src={{book.volumeInfo.imageLinks.thumbnail}} alt="Front cover of">
                     <div class="searchResult-info">
                         <p class="title"><b>{{book.volumeInfo.title}}</b></p>
                         <p class="authors" ng-repeat="author in book.volumeInfo.authors">
@@ -32,10 +36,8 @@
                         <p>Category:</p>
                         <p ng-repeat="category in book.volumeInfo.categories">{{category}}</p>
                     </div>
-                    
                 </div>
 			</a>
         </div>
-			
     </div>
 </section>

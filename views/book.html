@@ -1,16 +1,15 @@
 <section role class="singleBook">
     <div class="main-info clearfix">
-        <img ng-show={{bookInfo.volumeInfo.imageLinks.thumbnail!==NULL}} ng-src="src/no-image.png">
-        <img ng-show={{bookInfo.volumeInfo.imageLinks.thumbnail==NULL}} ng-src={{bookInfo.volumeInfo.imageLinks.thumbnail}} alt="Front cover of">
-        <h1>{{bookInfo.volumeInfo.title}}</h1>
-        <h3>{{bookInfo.volumeInfo.subtitle}}</h3>
-        <span class="authors" ng-repeat="author in bookInfo.volumeInfo.authors">
+        <img ng-src={{specificBook.volumeInfo.imageLinks.thumbnail}} alt="Front cover of">
+        <h1>{{specificBook.volumeInfo.title}}</h1>
+        <h3>{{specificBook.volumeInfo.subtitle}}</h3>
+        <span class="authors" ng-repeat="author in specificBook.volumeInfo.authors">
            {{author}}
        </span>
-        <p>{{bookInfo.volumeInfo.publishedDate}} - {{bookInfo.volumeInfo.publisher}}</p>
-        <a class="buyLink" href="{{bookInfo.saleInfo.buyLink}}">
-            <span class="amount">{{bookInfo.saleInfo.retailPrice.amount}}</span>
-            <span class="currencyCode">{{bookInfo.saleInfo.retailPrice.currencyCode}}</span></a>
+        <p>{{specificBook.volumeInfo.publishedDate}} - {{specificBook.volumeInfo.publisher}}</p>
+        <a class="buyLink" href="{{specificBook.saleInfo.buyLink}}">
+            <span class="amount">{{specificBook.saleInfo.retailPrice.amount}}</span>
+            <span class="currencyCode">{{specificBook.saleInfo.retailPrice.currencyCode}}</span></a>
     </div>
-    <div class="book-description clearfix">{{bookInfo.volumeInfo.description}}</div>
+    <div class="book-description clearfix">{{specificBook.volumeInfo.description}}</div>
 </section>
