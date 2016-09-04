@@ -7,10 +7,22 @@ booksControllers.controller('SearchController',['$scope','results', function($sc
 	}
 	$scope.searchIn = "whatever";
 	$scope.hideSingleBook();
-
+	$scope.getSomeBooks = function () {
+		results.requestResults($scope.query).then(function itWentWell (data){
+			if(data.data.totalItems == 0) {
+				$scope.emptyResponse = true;
+			} else {
+				$scope.emptyResponse = false;
+			}
+		$scope.booksResults = $scope.booksResults ? $scope.booksResults.concat(data.data.items) : data.data.items;
+		},function itDidntGoWell (data) {
+			$scope.requestError = data.data.error.message;
+		});
+	}
 	$scope.getScrollLikeTheWind = function (){
 		if (typeof $scope.booksResults == "undefined" || $scope.startIndex > 500) return;
-	    results.getMeSomeBooks($scope.query+'&startIndex='+$scope.startIndex, $scope);
+		$scope.query += "&startIndex="+$scope.startIndex;
+	    $scope.getSomeBooks();
 	    $scope.startIndex +=10;
 	}
 	$scope.whatToSearchFor = function (){
@@ -21,11 +33,11 @@ booksControllers.controller('SearchController',['$scope','results', function($sc
 				case "inauthor":
 				case "intitle":
 					$scope.query+= "+"+$scope.searchIn+":"+$scope.searchInput+'&maxResults=10&key='+apiKey;
-					results.getMeSomeBooks($scope.query,$scope);
+					$scope.getSomeBooks();
 					break;
 				case "whatever":
 					$scope.query +='&maxResults=10&key='+apiKey;
-					results.getMeSomeBooks($scope.query, $scope);
+					$scope.getSomeBooks();
 			}
 		}
 		$scope.startIndex = 10;
