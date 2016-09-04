@@ -2,11 +2,15 @@ var booksControllers = angular.module('booksControllers',[]);
 
 booksControllers.controller('SearchController',['$scope','results', function($scope, results) {
 	var apiKey = "AIzaSyCTwJYPf7-DpuD2C0OfQFKExXhqWPs7Wts";
+
 	$scope.hideSingleBook = function (){
 		$scope.showSingleBook = false;
 	}
+
 	$scope.searchIn = "whatever";
+	
 	$scope.hideSingleBook();
+
 	$scope.getSomeBooks = function () {
 		results.requestResults($scope.query).then(function itWentWell (data){
 			if(data.data.totalItems == 0) {
@@ -19,12 +23,14 @@ booksControllers.controller('SearchController',['$scope','results', function($sc
 			$scope.requestError = data.data.error.message;
 		});
 	}
+
 	$scope.getScrollLikeTheWind = function (){
 		if (typeof $scope.booksResults == "undefined" || $scope.startIndex > 500) return;
 		$scope.query += "&startIndex="+$scope.startIndex;
 	    $scope.getSomeBooks();
 	    $scope.startIndex +=10;
 	}
+
 	$scope.whatToSearchFor = function (){
 		if($scope.searchInput.length > 3) {
 			$scope.query = 'https://www.googleapis.com/books/v1/volumes?q='+$scope.searchInput;
@@ -43,7 +49,7 @@ booksControllers.controller('SearchController',['$scope','results', function($sc
 		$scope.startIndex = 10;
 	}
 
-	$scope.loadMoreInfo = function (index) {
+	$scope.loadBookInfo = function (index) {
 		$scope.specificBook = $scope.booksResults[index];
 		$scope.showSingleBook = true;
 	}

@@ -1,9 +1,9 @@
 <section role class="singleBook">
     <div class="main-info clearfix">
-        <img ng-src={{specificBook.volumeInfo.imageLinks.thumbnail}} alt="Front cover of">
+        <img ng-if="specificBook.volumeInfo.imageLinks.thumbnail" ng-src={{specificBook.volumeInfo.imageLinks.thumbnail}} alt="Front cover of {{specificBook.volumeInfo.title}}">
         <h1>{{specificBook.volumeInfo.title}}</h1>
         <h3>{{specificBook.volumeInfo.subtitle}}</h3>
-        <span class="authors" ng-repeat="author in specificBook.volumeInfo.authors">
+        <span class="authors" ng-repeat="author in specificBook.volumeInfo.authors track by $index"">
            {{author}}
        </span>
         <p>{{specificBook.volumeInfo.publishedDate}} - {{specificBook.volumeInfo.publisher}}</p>
