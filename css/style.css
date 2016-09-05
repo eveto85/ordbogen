@@ -126,6 +126,7 @@ a:visited {
     display: -ms-flexbox;
     display: flex;
     padding: 1em;
+    cursor: pointer;
 }
 
 .searchResult .title {
