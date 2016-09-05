@@ -10,7 +10,11 @@
         <p>{{specificBook.volumeInfo.publishedDate}} - {{specificBook.volumeInfo.publisher}}</p>
         <a class="buyLink" href="{{specificBook.saleInfo.buyLink}}">
             <span class="amount">{{specificBook.saleInfo.retailPrice.amount}}</span>
-            <span class="currencyCode">{{specificBook.saleInfo.retailPrice.currencyCode}}</span></a>
+            <span class="currencyCode">{{specificBook.saleInfo.retailPrice.currencyCode}}</span>
+        </a>
+        <a class="buyLink" href="https://books.google.com/ebooks?id={{specificBook.id}}">
+            Go To
+        </a>
     </div>
     <div class="book-description clearfix">{{specificBook.volumeInfo.description}}</div>
 </section>
