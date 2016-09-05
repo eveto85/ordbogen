@@ -1,0 +1,262 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body,
+p {
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    background-color: #f0f0f0;
+}
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+.clearfix {
+    display: inline-block;
+}
+
+textarea,
+input[type="text"],
+input[type="button"],
+input[type="submit"],
+button {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    border-radius: 0;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+    color: inherit;
+}
+
+.searchWrapper {
+    padding: 1em;
+    cursor: pointer;
+}
+
+.searchForm {
+    text-align: center;
+    background-color: #e8e8e8;
+    padding: 2em;
+}
+
+.searchForm-button {
+    font-size: 2.3em;
+    vertical-align: middle;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.searchForm label {
+    display: block;
+    height: 40px;
+    line-height: 40px;
+}
+
+.searchField {
+    -webkit-transition: all.3s ease;
+    transition: all.3s ease;
+    font-size: 2em;
+    width: 90%;
+    max-width: 400px;
+    height: 45px;
+    text-align: center;
+    color: #2196F3;
+    border: none;
+}
+
+.searchField:focus {
+    width: 100%;
+    max-width: 600px;
+}
+
+.searchForm-error {
+    color: red;
+    text-align: center;
+}
+
+.searchResults {
+    padding: 1em;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.searchResult-wrapper {
+    margin-bottom: 1em;
+    margin-right: 1em;
+    background-color: #fff;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    -webkit-box-flex: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+.searchResult-wrapper:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.searchResult-wrapper a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 1em;
+}
+
+.searchResult .title {
+    margin-top: auto;
+    font-size: .9em;
+}
+
+.searchResult p {
+    margin-top: .5em;
+    font-size: .8em;
+}
+
+.searchResult img {
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+.singleBook-popup {
+    background-color: rgba(47, 44, 44, 0.5);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.singleBook-popup--inner {
+    margin-top: 10%;
+}
+
+.singleBook {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    background-color: #fff;
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1em;
+    position: relative;
+}
+
+.close-x {
+    font-size: 1em;
+    color: #e66666;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    position: absolute;
+    right: 0.8em;
+    top: 0.7em;
+    cursor: pointer;
+    background-color: #e66666;
+    border: 1px solid #a42424;
+    line-height: 0.8em;
+    text-align: center;
+}
+
+.close-x:hover {
+    color: #781818;
+}
+
+.main-info {
+    border-bottom: 1px solid #eee;
+    width: 100%;
+}
+
+.main-info img {
+    width: auto;
+    float: left;
+    margin-right: 2em;
+}
+
+.main-info h1 {
+    font-weight: 300;
+    margin: 0;
+    font-size: 2em;
+    margin-top: .4em;
+    margin-bottom: 0;
+}
+
+.main-info h3 {
+    font-weight: 600;
+    font-size: 1em;
+    margin-top: .3em;
+    margin-bottom: 1em;
+}
+
+.main-info .authors {
+    color: #616161;
+    margin: 0;
+    margin-right: .7em;
+    display: inline-block;
+    font-weight: bolder;
+    font-size: 0.81em;
+}
+
+.main-info p {
+    margin-top: .2em;
+    margin-bottom: 1em;
+    font-size: 0.9em;
+}
+
+.main-info .buyLink {
+    display: inline-block;
+    background-color: #2196F3;
+    text-decoration: none;
+    color: #fff;
+    padding: 0 2em;
+    line-height: 2;
+    border-radius: .2em;
+}
+
+.book-description {
+    padding: 2em;
+    font-size: .9em;
+    line-height: 1.5;
+    color: #333;
+}
+
+@media (min-width: 768px) {
+    .searchResult-wrapper {
+        -ms-flex-preferred-size: 200px;
+        flex-basis: 200px;
+    }
+    .searchForm label {
+        display: inline;
+    }
+}
+
+@media (max-width: 767px) {
+    .searchResult-wrapper {
+        width: calc(50% - 1em);
+    }
+}

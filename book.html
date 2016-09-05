@@ -1,0 +1,16 @@
+<section role class="singleBook">
+    <div class="close-x" ng-click="hideSingleBook()">×</div>
+    <div class="main-info clearfix">
+        <img ng-if="specificBook.volumeInfo.imageLinks.thumbnail" ng-src={{specificBook.volumeInfo.imageLinks.thumbnail}} alt="Front cover of {{specificBook.volumeInfo.title}}">
+        <h1>{{specificBook.volumeInfo.title}}</h1>
+        <h3>{{specificBook.volumeInfo.subtitle}}</h3>
+        <span class="authors" ng-repeat="author in specificBook.volumeInfo.authors track by $index"">
+           {{author}}
+       </span>
+        <p>{{specificBook.volumeInfo.publishedDate}} - {{specificBook.volumeInfo.publisher}}</p>
+        <a class="buyLink" href="{{specificBook.saleInfo.buyLink}}">
+            <span class="amount">{{specificBook.saleInfo.retailPrice.amount}}</span>
+            <span class="currencyCode">{{specificBook.saleInfo.retailPrice.currencyCode}}</span></a>
+    </div>
+    <div class="book-description clearfix">{{specificBook.volumeInfo.description}}</div>
+</section>
